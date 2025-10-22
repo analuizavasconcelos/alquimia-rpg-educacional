@@ -1,0 +1,71 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+/ios/
+/web/
+
+# Exported project binaries
+*.exe
+*.dll
+*.apk
+*.x86_64
+*.x86
+*.zip
+*.pck
+*.so
+*.dylib
+*.app
+*.dmg
+*.wasm
+
+# Godot asset imports
+.import/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.stackdump
+
+# Godot editor settings (not project-specific)
+.editor/
+godot/tmp/
+
+# User-specific files
+*.tmp
+*.log
+*.swp
+*~
+
+# macOS Godot cache
+.cache/
+
+# Build/Export folders
+builds/
+exports/
+dist/
+
+# IDE and Editor folders
+.vscode/
+.idea/
+*.code-workspace
+
+# Backup files
+*.bak
+*~.nib
+*.swp
+
+# Mono/C# (caso use C# no futuro)
+.mono/
+data_*/
+mono_crash.*.json
+
+# Addons (descomente se não quiser versionar addons específicos)
+# addons/
+
+# Screenshots e vídeos de teste
+screenshots/
+*.mp4
+*.avi
+*.mov
+
