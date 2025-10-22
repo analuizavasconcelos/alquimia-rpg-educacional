@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://cvuhx5et3y5kp"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cjcjylksm1exd" path="res://scenes/characters/player/player.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://cjg7vljplrrm" path="res://assets/characters/IDLE/base_idle_strip9.png" id="2_idle"]
 [ext_resource type="Texture2D" uid="uid://27x46nmwfh1i" path="res://assets/characters/RUN/base_run_strip8.png" id="3_run"]
 
