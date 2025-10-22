@@ -16,13 +16,17 @@ Jogo top-down simples criado no Godot 4.4 com cena de vilarejo e player jogável
 ```
 jogo_tcc/
 ├── scenes/
-│   ├── player.gd          # Script de movimento do jogador
-│   ├── player.tscn        # Cena do jogador
-│   └── vilarejo.tscn      # Cena principal do vilarejo
+│   ├── characters/
+│   │   └── player/           # Personagem jogável
+│   │       ├── player.gd     # Script de movimento
+│   │       └── player.tscn   # Cena com animações
+│   └── levels/
+│       └── vilarejo.tscn     # Cena principal do vilarejo
 ├── assets/
-│   ├── characters/        # Sprites do personagem
-│   └── world/             # Tilesets do mundo
-└── project.godot          # Configuração do projeto
+│   ├── characters/           # Sprites dos personagens
+│   ├── world/                # Tilesets do mundo
+│   └── buildings/            # Assets de construções
+└── project.godot             # Configuração do projeto
 ```
 
 ## 🚀 Como Executar

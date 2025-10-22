@@ -30,4 +30,3 @@ func update_animation(direction: Vector2) -> void:
 	else:
 		# Se está parado, executa animação idle
 		animated_sprite.play("idle")
-
