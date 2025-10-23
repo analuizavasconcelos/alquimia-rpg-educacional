@@ -1867,4 +1867,6 @@ tile_set = SubResource("TileSet_house")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-56, -17, 23, -16, 23, 34, -56, 34)
+position = Vector2(0, -2.44344)
+scale = Vector2(1, 0.820581)
+polygon = PackedVector2Array(-56, -17, 23, -17.7393, 23, 34, -56, 34.2104)

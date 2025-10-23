@@ -323,5 +323,6 @@ use_kinematic_bodies = true
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(-8, -4)
-polygon = PackedVector2Array(-39, -15, -8, -24, 8, -24, 39, -15, 40, 35, -40, 35)
+position = Vector2(-8, -3.13212)
+scale = Vector2(1, 0.920537)
+polygon = PackedVector2Array(-43, -8.54706, 43, -8.54706, 43, 21.225, -43, 21.225)
