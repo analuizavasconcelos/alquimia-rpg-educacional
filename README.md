@@ -47,4 +47,3 @@ jogo_tcc/
 ---
 
 Desenvolvido para o TCC
-
