@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://jhadt6prsn74"]
+[gd_scene load_steps=34 format=4 uid="uid://jhadt6prsn74"]
 
 [ext_resource type="PackedScene" uid="uid://dd0gdtnbton7m" path="res://scenes/characters/player/player.tscn" id="1_player"]
 [ext_resource type="Texture2D" uid="uid://b4ybtqhd5cc3g" path="res://assets/world/tileset/spr_tileset_sunnysideworld.png" id="2_7hyjw"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://07sbjtlvd86u" path="res://scenes/ui/dialogue_manager.gd" id="16_dialogue_manager"]
 [ext_resource type="Script" uid="uid://bclk7rsr0x0j5" path="res://scenes/ui/knowledge_manager.gd" id="17_knowledge_manager"]
 [ext_resource type="PackedScene" path="res://scenes/ui/knowledge_notification.tscn" id="18_knowledge_notification"]
+[ext_resource type="PackedScene" path="res://scenes/ui/knowledge_glossary.tscn" id="19_knowledge_glossary"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fjlch"]
 texture = ExtResource("2_tileset")
@@ -10684,4 +10685,7 @@ script = ExtResource("16_dialogue_manager")
 script = ExtResource("17_knowledge_manager")
 
 [node name="KnowledgeNotification" parent="." instance=ExtResource("18_knowledge_notification")]
+visible = false
+
+[node name="KnowledgeGlossary" parent="." instance=ExtResource("19_knowledge_glossary")]
 visible = false

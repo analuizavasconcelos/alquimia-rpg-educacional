@@ -21,8 +21,14 @@ func _physics_process(_delta: float) -> void:
 		elif "is_dialogue_active" in dialogue_manager:
 			dialogue_active = dialogue_manager.is_dialogue_active
 	
-	# Se há diálogo ativo, não permitir movimentação
-	if dialogue_active:
+	# Verificar se o glossário está aberto
+	var glossary = get_tree().get_first_node_in_group("knowledge_glossary")
+	var glossary_open = false
+	if glossary and glossary.visible:
+		glossary_open = true
+	
+	# Se há diálogo ativo ou glossário aberto, não permitir movimentação
+	if dialogue_active or glossary_open:
 		velocity = Vector2.ZERO
 		update_animation(Vector2.ZERO)
 		return
