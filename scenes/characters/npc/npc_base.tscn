@@ -428,6 +428,7 @@ shape = SubResource("CircleShape2D_collider")
 position = Vector2(0, 21)
 
 [node name="DialogueBox" parent="." instance=ExtResource("9_dialogue_box")]
+visible = false
 
 [node name="InteractionArea" type="Area2D" parent="."]
 
