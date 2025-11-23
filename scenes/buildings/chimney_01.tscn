@@ -234,4 +234,4 @@ position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_smoke")
 animation = &"smoke"
 autoplay = "smoke"
-frame_progress = 0.211416
+frame_progress = 0.972551

@@ -11,6 +11,9 @@ func _ready() -> void:
 	dialogue_manager = get_tree().get_first_node_in_group("dialogue_manager")
 	if not dialogue_manager:
 		dialogue_manager = get_node_or_null("/root/Vilarejo/DialogueManager")
+	
+	# Verificar se deve spawnar próximo ao well
+	_check_spawn_at_well()
 
 func _physics_process(_delta: float) -> void:
 	# Verificar se há diálogo ativo - se sim, travar movimentação
@@ -58,3 +61,34 @@ func update_animation(direction: Vector2) -> void:
 	else:
 		# Se está parado, executa animação idle
 		animated_sprite.play("idle")
+
+func _check_spawn_at_well() -> void:
+	var transition_manager = get_node_or_null("/root/SceneTransitionManager")
+	if not transition_manager:
+		return
+	
+	# Verificar se deve spawnar próximo ao well
+	if transition_manager.get_spawn_at_well():
+		# Limpar a flag
+		transition_manager.clear_spawn_flag()
+		
+		# Aguardar um frame para garantir que a cena está totalmente carregada
+		await get_tree().process_frame
+		
+		# Procurar pelo well na cena
+		var well = null
+		
+		# Primeiro tentar pelo grupo
+		var wells = get_tree().get_nodes_in_group("well")
+		if not wells.is_empty():
+			well = wells[0]
+		else:
+			# Tentar encontrar por nome "Well" na cena
+			var scene_root = get_tree().current_scene
+			if scene_root:
+				well = scene_root.get_node_or_null("Well")
+		
+		if well:
+			# Posicionar o player próximo ao well (um pouco acima e à direita)
+			var well_position = well.global_position
+			global_position = well_position + Vector2(30, -20)

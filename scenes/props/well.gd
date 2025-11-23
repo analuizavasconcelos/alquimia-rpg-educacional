@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@export var target_scene: String = ""  # Caminho para a cena da dungeon (ex: "res://scenes/levels/dungeon.tscn")
+@export var target_scene: String = ""  # Caminho para a cena de destino (ex: "res://scenes/levels/dungeon.tscn")
 @export var interaction_distance: float = 50.0  # Distância para interagir
 
 var portal_icon: Node2D = null
@@ -9,7 +9,17 @@ var _player_nearby: bool = false
 var _icon_tween: Tween = null
 var _icon_base_position: Vector2 = Vector2(0, -11)
 
+const VILAREJO_SCENE = "res://scenes/levels/vilarejo.tscn"
+const DUNGEON_SCENE = "res://scenes/levels/dungeon.tscn"
+
 func _ready() -> void:
+	# Adicionar ao grupo "well" para facilitar a busca
+	add_to_group("well")
+	
+	# Se target_scene não estiver configurado, detectar automaticamente
+	if target_scene.is_empty():
+		_auto_detect_target_scene()
+	
 	# Buscar nodes
 	portal_icon = get_node_or_null("PortalIcon")
 	interaction_area = get_node_or_null("InteractionArea")
@@ -68,7 +78,26 @@ func _on_body_exited(body: Node) -> void:
 			portal_icon.visible = false
 			_stop_icon_animation()
 
+func _auto_detect_target_scene() -> void:
+	# Detectar a cena atual e definir o destino automaticamente
+	var current_scene_path = get_tree().current_scene.scene_file_path
+	
+	if current_scene_path == DUNGEON_SCENE:
+		# Se estiver na dungeon, ir para o vilarejo
+		target_scene = VILAREJO_SCENE
+	elif current_scene_path == VILAREJO_SCENE:
+		# Se estiver no vilarejo, ir para a dungeon
+		target_scene = DUNGEON_SCENE
+	else:
+		# Fallback: tentar usar a dungeon como padrão
+		target_scene = DUNGEON_SCENE
+		push_warning("Well: Cena atual não reconhecida (" + current_scene_path + "), usando dungeon como destino padrão")
+
 func _enter_dungeon() -> void:
+	# Se ainda não tiver target_scene, tentar detectar novamente
+	if target_scene.is_empty():
+		_auto_detect_target_scene()
+	
 	if target_scene.is_empty():
 		push_warning("Well: target_scene não está configurado!")
 		return
@@ -77,7 +106,12 @@ func _enter_dungeon() -> void:
 		push_error("Well: Cena não encontrada: " + target_scene)
 		return
 	
-	# Trocar para a cena da dungeon
+	# Marcar que o player deve aparecer próximo ao well na próxima cena
+	var transition_manager = get_node_or_null("/root/SceneTransitionManager")
+	if transition_manager:
+		transition_manager.set_spawn_at_well(true)
+	
+	# Trocar para a cena de destino
 	get_tree().change_scene_to_file(target_scene)
 
 func _start_icon_animation() -> void:
