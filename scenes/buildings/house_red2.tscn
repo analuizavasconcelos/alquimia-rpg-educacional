@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://cja0xh7hukhj1"]
+[gd_scene load_steps=9 format=4 uid="uid://cof10otb1yyqx"]
 
-[ext_resource type="Texture2D" uid="uid://b17m27vpfxryv" path="res://assets/buildings/tileset/SUNNYSIDE_WORLD_BUILDINGS_V0.01.png" id="1_2d6x1"]
-[ext_resource type="Texture2D" uid="uid://b4ybtqhd5cc3g" path="res://assets/world/tileset/spr_tileset_sunnysideworld.png" id="2_myyqy"]
-[ext_resource type="PackedScene" uid="uid://djigw0lp4sgfk" path="res://scenes/buildings/chimney_01.tscn" id="3_myyqy"]
+[ext_resource type="Texture2D" uid="uid://b17m27vpfxryv" path="res://assets/sprites/tilesets/buildings/tileset/SUNNYSIDE_WORLD_BUILDINGS_V0.01.png" id="1_2d6x1"]
+[ext_resource type="Texture2D" uid="uid://b4ybtqhd5cc3g" path="res://assets/sprites/tilesets/world/tileset/spr_tileset_sunnysideworld.png" id="2_myyqy"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/chimney_01.tscn" id="3_myyqy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_house"]
 texture = ExtResource("1_2d6x1")

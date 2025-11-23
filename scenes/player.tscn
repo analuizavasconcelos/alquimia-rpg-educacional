@@ -1,8 +1,8 @@
 [gd_scene load_steps=23 format=3 uid="uid://cvuhx5et3y5kp"]
 
-[ext_resource type="Script" uid="uid://cjcjylksm1exd" path="res://scenes/characters/player/player.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://cjg7vljplrrm" path="res://assets/characters/IDLE/base_idle_strip9.png" id="2_idle"]
-[ext_resource type="Texture2D" uid="uid://27x46nmwfh1i" path="res://assets/characters/RUN/base_run_strip8.png" id="3_run"]
+[ext_resource type="Script" uid="uid://bcl0xtr3xpuyo" path="res://src/entities/player.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cjg7vljplrrm" path="res://assets/sprites/characters/characters/IDLE/base_idle_strip9.png" id="2_idle"]
+[ext_resource type="Texture2D" uid="uid://27x46nmwfh1i" path="res://assets/sprites/characters/characters/RUN/base_run_strip8.png" id="3_run"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_idle")
@@ -154,4 +154,4 @@ position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_player")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(5, 5)

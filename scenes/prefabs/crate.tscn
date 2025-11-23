@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://kwvc8gno2x0a"]
+
+[ext_resource type="Texture2D" uid="uid://cmrj06r4pm0d7" path="res://assets/sprites/tilesets/world/ASSETS/crate_base.png" id="1_texture"]
+
+[node name="Crate" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_texture")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, -4, 7, -4, 7, 8, -7, 8)

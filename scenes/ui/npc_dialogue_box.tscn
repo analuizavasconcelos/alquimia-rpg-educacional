@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dm1aclnfsn51p"]
 
-[ext_resource type="Script" uid="uid://bri66sb7bd27t" path="res://scenes/ui/npc_dialogue_box.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bri66sb7bd27t" path="res://src/ui/npc_dialogue_box.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.2, 0.15, 0.3, 0.95)

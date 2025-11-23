@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://knowledge_notification"]
 
-[ext_resource type="Script" path="res://scenes/ui/knowledge_notification.gd" id="1_script"]
+[ext_resource type="Script" path="res://src/ui/knowledge_notification.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.15, 0.3, 0.2, 0.95)

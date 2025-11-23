@@ -1,6 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://knowledge_glossary"]
+[gd_scene load_steps=5 format=3 uid="uid://knowledge_glossary"]
 
-[ext_resource type="Script" path="res://scenes/ui/knowledge_glossary.gd" id="1_script"]
+[ext_resource type="Script" path="res://src/ui/knowledge_glossary.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_close_button"]
+bg_color = Color(0.2, 0.2, 0.25, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.5, 0.6, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_close_button_hover"]
+bg_color = Color(0.4, 0.2, 0.2, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.4, 0.4, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.1, 0.1, 0.15, 0.95)
@@ -15,6 +39,7 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
 [node name="KnowledgeGlossary" type="CanvasLayer"]
+layer = 100
 script = ExtResource("1_script")
 
 [node name="Control" type="Control" parent="."]
@@ -90,10 +115,26 @@ Explore o mundo e converse com os NPCs para aprender!"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="CloseLabel" type="Label" parent="Control/Panel/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
-theme_override_font_sizes/font_size = 14
-text = "Pressione G para fechar"
-horizontal_alignment = 1
+[node name="CloseButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 350.0
+offset_top = -280.0
+offset_right = 390.0
+offset_bottom = -240.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_close_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_close_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_close_button_hover")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 32
+text = "×"
+flat = false
 

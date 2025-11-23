@@ -1,7 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://djigw0lp4sgfk"]
+[gd_scene load_steps=34 format=3 uid="uid://dp6erixfmvqfw"]
 
-[ext_resource type="Texture2D" uid="uid://b4ybtqhd5cc3g" path="res://assets/world/tileset/spr_tileset_sunnysideworld.png" id="1_tileset"]
-[ext_resource type="Texture2D" uid="uid://cjx1k31i8rla0" path="res://assets/buildings/SUNNYSIDE_WORLD_CHIMNEYSMOKE/chimneysmoke_01_strip30.png" id="2_smoke"]
+[ext_resource type="Texture2D" path="res://assets/world/tileset/spr_tileset_sunnysideworld.png" id="1_tileset"]
+[ext_resource type="Texture2D" path="res://assets/buildings/SUNNYSIDE_WORLD_CHIMNEYSMOKE/chimneysmoke_01_strip30.png" id="2_smoke"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smoke_0"]
 atlas = ExtResource("2_smoke")
