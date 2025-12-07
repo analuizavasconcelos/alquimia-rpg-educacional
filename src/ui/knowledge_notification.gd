@@ -44,7 +44,7 @@ func show_notification() -> void:
 		control.visible = true
 	
 	# Animação de entrada (deslizar de cima)
-	control.position.y = -150.0
+	control.position.y = -250.0
 	control.modulate.a = 0.0
 	
 	if tween:
@@ -65,7 +65,7 @@ func hide_notification() -> void:
 		tween.kill()
 	tween = create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(control, "position:y", -150.0, 0.3).set_ease(Tween.EASE_IN)
+	tween.tween_property(control, "position:y", -250.0, 0.3).set_ease(Tween.EASE_IN)
 	tween.tween_property(control, "modulate:a", 0.0, 0.3)
 	
 	await tween.finished

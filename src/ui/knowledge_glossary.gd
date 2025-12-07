@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var control: Control = $Control
 @onready var knowledge_list: VBoxContainer = $Control/Panel/VBox/ScrollContainer/KnowledgeList
-@onready var close_button: Button = $Control/CloseButton
+@onready var close_button: Button = $Control/Panel/CloseButton
 var empty_label: Label = null
 
 var knowledge_manager: Node = null
@@ -26,7 +26,7 @@ func _ready() -> void:
 	else:
 		print("⚠️ Botão de fechar não encontrado!")
 		# Tentar buscar manualmente
-		close_button = get_node_or_null("Control/CloseButton")
+		close_button = get_node_or_null("Control/Panel/CloseButton")
 		if close_button:
 			close_button.pressed.connect(_on_close_button_pressed)
 			print("✅ Botão de fechar encontrado e conectado manualmente")
@@ -70,7 +70,7 @@ func open_glossary() -> void:
 	
 	# Garantir que o botão de fechar está conectado e funcional
 	if not close_button:
-		close_button = get_node_or_null("Control/Panel/CloseButton")
+		close_button = get_node_or_null("Control/CloseButton")
 	
 	if close_button:
 		# Desconectar e reconectar para garantir que está conectado
@@ -96,7 +96,7 @@ func close_glossary() -> void:
 	if control:
 		control.visible = false
 
-func _on_knowledge_unlocked(knowledge_id: String, knowledge_name: String, knowledge_description: String) -> void:
+func _on_knowledge_unlocked(_knowledge_id: String, _knowledge_name: String, _knowledge_description: String) -> void:
 	# Quando um conhecimento é desbloqueado, atualizar a lista
 	_update_knowledge_list()
 
@@ -164,11 +164,11 @@ func _create_category_label(category: String) -> Label:
 		category_display = category[0].to_upper() + category.substr(1)
 	label.text = "━━━ " + category_display + " ━━━"
 	label.add_theme_color_override("font_color", Color(0.6, 0.8, 1.0, 1.0))
-	label.add_theme_font_size_override("font_size", 18)
+	label.add_theme_font_size_override("font_size", 24)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	return label
 
-func _create_knowledge_item(name: String, description: String) -> Panel:
+func _create_knowledge_item(item_name: String, description: String) -> Panel:
 	var panel = Panel.new()
 	var style = StyleBoxFlat.new()
 	style.bg_color = Color(0.15, 0.15, 0.2, 0.8)
@@ -187,31 +187,31 @@ func _create_knowledge_item(name: String, description: String) -> Panel:
 	var margin = MarginContainer.new()
 	panel.add_child(margin)
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	margin.add_theme_constant_override("margin_left", 15)
-	margin.add_theme_constant_override("margin_top", 12)
-	margin.add_theme_constant_override("margin_right", 15)
-	margin.add_theme_constant_override("margin_bottom", 12)
+	margin.add_theme_constant_override("margin_left", 25)
+	margin.add_theme_constant_override("margin_top", 20)
+	margin.add_theme_constant_override("margin_right", 25)
+	margin.add_theme_constant_override("margin_bottom", 20)
 	
 	var vbox = VBoxContainer.new()
 	margin.add_child(vbox)
 	vbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	vbox.add_theme_constant_override("separation", 10)
+	vbox.add_theme_constant_override("separation", 15)
 	
 	var name_label = Label.new()
-	name_label.text = "• " + name
+	name_label.text = "• " + item_name
 	name_label.add_theme_color_override("font_color", Color(1.0, 0.84, 0.0, 1.0))  # Dourado
-	name_label.add_theme_font_size_override("font_size", 18)
+	name_label.add_theme_font_size_override("font_size", 28)
 	name_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	vbox.add_child(name_label)
 	
 	var desc_label = Label.new()
 	desc_label.text = description
 	desc_label.add_theme_color_override("font_color", Color(0.9, 0.9, 0.9, 1.0))
-	desc_label.add_theme_font_size_override("font_size", 14)
+	desc_label.add_theme_font_size_override("font_size", 24)
 	desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	vbox.add_child(desc_label)
 	
 	# Ajustar tamanho mínimo
-	panel.custom_minimum_size = Vector2(0, 80)
+	panel.custom_minimum_size = Vector2(0, 120)
 	
 	return panel

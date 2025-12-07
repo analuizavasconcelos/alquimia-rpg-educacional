@@ -12,6 +12,11 @@ signal quit_pressed
 var _button_tween: Tween = null
 
 func _ready() -> void:
+	# Verificar se os nós estão prontos
+	if not continue_button or not new_game_button or not quit_button or not vbox_container:
+		push_error("❌ Erro: Alguns nós do menu não foram encontrados!")
+		return
+	
 	# Conectar sinais dos botões
 	continue_button.pressed.connect(_on_continue_pressed)
 	new_game_button.pressed.connect(_on_new_game_pressed)
@@ -32,6 +37,8 @@ func _ready() -> void:
 	_animate_menu_entrance()
 
 func _update_continue_button() -> void:
+	if not continue_button:
+		return
 	# Verificar se existe um save game
 	var save_manager = get_tree().get_first_node_in_group("save_manager")
 	if save_manager and save_manager.has_save_file():
@@ -42,6 +49,8 @@ func _update_continue_button() -> void:
 		print("ℹ️ Nenhum save encontrado - Botão Continuar desabilitado")
 
 func _animate_menu_entrance() -> void:
+	if not vbox_container:
+		return
 	# Fade in do menu
 	vbox_container.modulate.a = 0.0
 	var tween = create_tween()
@@ -54,22 +63,28 @@ func _animate_menu_entrance() -> void:
 	tween.set_trans(Tween.TRANS_BACK)
 
 func _on_continue_hover() -> void:
-	_animate_button_hover(continue_button)
+	if continue_button:
+		_animate_button_hover(continue_button)
 
 func _on_continue_exit() -> void:
-	_animate_button_exit(continue_button)
+	if continue_button:
+		_animate_button_exit(continue_button)
 
 func _on_new_game_hover() -> void:
-	_animate_button_hover(new_game_button)
+	if new_game_button:
+		_animate_button_hover(new_game_button)
 
 func _on_new_game_exit() -> void:
-	_animate_button_exit(new_game_button)
+	if new_game_button:
+		_animate_button_exit(new_game_button)
 
 func _on_quit_hover() -> void:
-	_animate_button_hover(quit_button)
+	if quit_button:
+		_animate_button_hover(quit_button)
 
 func _on_quit_exit() -> void:
-	_animate_button_exit(quit_button)
+	if quit_button:
+		_animate_button_exit(quit_button)
 
 func _animate_button_hover(button: Button) -> void:
 	# Animação sutil ao passar o mouse
@@ -90,7 +105,7 @@ func _animate_button_exit(button: Button) -> void:
 	_button_tween.set_ease(Tween.EASE_OUT)
 
 func _on_continue_pressed() -> void:
-	if continue_button.disabled:
+	if not continue_button or continue_button.disabled:
 		return
 	continue_pressed.emit()
 	_load_game()
@@ -130,13 +145,18 @@ func _start_new_game() -> void:
 
 func _transition_to_scene(scene_path: String) -> void:
 	# Animação de saída antes de trocar de cena
-	var tween = create_tween()
-	tween.tween_property(vbox_container, "modulate:a", 0.0, 0.3)
-	tween.tween_callback(func(): get_tree().change_scene_to_file(scene_path))
+	if vbox_container:
+		var tween = create_tween()
+		tween.tween_property(vbox_container, "modulate:a", 0.0, 0.3)
+		tween.tween_callback(func(): get_tree().change_scene_to_file(scene_path))
+	else:
+		get_tree().change_scene_to_file(scene_path)
 
 func _quit_game() -> void:
 	# Animação de saída antes de fechar
-	var tween = create_tween()
-	tween.tween_property(vbox_container, "modulate:a", 0.0, 0.3)
-	tween.tween_callback(func(): get_tree().quit())
-
+	if vbox_container:
+		var tween = create_tween()
+		tween.tween_property(vbox_container, "modulate:a", 0.0, 0.3)
+		tween.tween_callback(func(): get_tree().quit())
+	else:
+		get_tree().quit()
