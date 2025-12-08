@@ -59,6 +59,11 @@ A plataforma foi concebida como um sistema modular e expansível, permitindo a i
 - **[data/dialogues/README.md](data/dialogues/README.md)** - Sistema de diálogo
 - **[EXPORTAR_ANDROID.md](EXPORTAR_ANDROID.md)** - Guia de exportação para Android
 
+## 👥 Contribuidores
+
+- [Filipe de Jesus Souza] - Desenvolveu a primeira versão dessa plataforma
+- [Iago Rocha Porto] - Desenvolveu o template com as regras e estrutura que foi utilizado como base para esse projeto
+
 ## 📝 Licença
 
 Desenvolvido para Trabalho de Conclusão de Curso (TCC).
