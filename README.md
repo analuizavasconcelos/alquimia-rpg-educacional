@@ -1,6 +1,6 @@
 # 🎮 Proposta de Plataforma de Jogo Educacional Estilo RPG
 
-> **Trabalho de Conclusão de Curso (TCC)**  
+> **Instituto Federal de Educação, Ciência e Tecnologia da Bahia (IFBA)**  
 > Jogo educacional desenvolvido na engine Godot 4.4 com foco no ensino de conceitos de Química através de uma experiência imersiva e gamificada.
 
 ## 📋 Sobre o Projeto
@@ -63,7 +63,3 @@ A plataforma foi concebida como um sistema modular e expansível, permitindo a i
 
 - [Filipe de Jesus Souza] - Desenvolveu a primeira versão dessa plataforma que servirá de base para que ele possa ser expandido
 - [Iago Rocha Porto] - Desenvolveu o template com as regras e estrutura que foi utilizado como base para esse projeto
-
-## 📝 Licença
-
-Desenvolvido para Trabalho de Conclusão de Curso (TCC).
