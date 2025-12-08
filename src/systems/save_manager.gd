@@ -25,30 +25,52 @@ func _ready() -> void:
 	add_to_group("save_manager")
 	print("💾 SaveManager inicializado")
 	
-	# Verificar periodicamente se deve carregar save quando KnowledgeManager estiver disponível
+	# Sempre tentar carregar save quando uma cena é carregada (se houver save disponível)
 	_check_and_load_save()
 
+func _notification(what: int) -> void:
+	# Salvar quando o jogo está sendo fechado
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		print("💾 Salvando antes de fechar o jogo...")
+		save_game()
+
 func _check_and_load_save() -> void:
-	# Verificar se deve carregar e se o KnowledgeManager está disponível
-	if should_load_on_next_scene:
-		var knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
-		if knowledge_manager:
-			# KnowledgeManager encontrado, pode carregar
+	# Verificar se há save disponível
+	if not has_save_file():
+		# Se não há save, mas should_load_on_next_scene está true, resetar flag
+		if should_load_on_next_scene:
 			should_load_on_next_scene = false
-			load_game_when_ready()
-		else:
-			# Ainda não está disponível, tentar novamente em breve
-			await get_tree().create_timer(0.1).timeout
-			_check_and_load_save()
+		return
+	
+	# Verificar se o KnowledgeManager está disponível (como autoload ou grupo)
+	var knowledge_manager = get_node_or_null("/root/KnowledgeManager")
+	if not knowledge_manager:
+		knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
+	
+	if knowledge_manager:
+		# KnowledgeManager encontrado, pode carregar
+		if should_load_on_next_scene:
+			should_load_on_next_scene = false
+		load_game_when_ready()
+	else:
+		# Ainda não está disponível, tentar novamente em breve
+		await get_tree().create_timer(0.1).timeout
+		_check_and_load_save()
 
 # Método para carregar save após a cena estar pronta
 func load_game_when_ready() -> void:
 	# Aguardar alguns frames para garantir que a cena está totalmente carregada
 	await get_tree().process_frame
 	await get_tree().process_frame
+	await get_tree().process_frame  # Mais um frame para garantir
 	
 	if has_save_file():
 		load_game()
+		# Notificar o KnowledgeGlossary para atualizar a lista
+		await get_tree().process_frame
+		var glossary = get_tree().get_first_node_in_group("knowledge_glossary")
+		if glossary and glossary.has_method("_update_knowledge_list"):
+			glossary._update_knowledge_list()
 
 # Verificar se existe um save game
 func has_save_file() -> bool:
@@ -56,7 +78,11 @@ func has_save_file() -> bool:
 
 # Salvar progresso atual
 func save_game() -> bool:
-	var knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
+	# Tentar primeiro como autoload, depois como grupo
+	var knowledge_manager = get_node_or_null("/root/KnowledgeManager")
+	if not knowledge_manager:
+		knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
+	
 	if not knowledge_manager:
 		push_error("KnowledgeManager não encontrado para salvar!")
 		return false
@@ -100,6 +126,7 @@ func load_game() -> bool:
 	if file == null:
 		var error = FileAccess.get_open_error()
 		push_error("Erro ao carregar jogo: " + str(error))
+		is_loading = false
 		return false
 	
 	var json_string = file.get_as_text()
@@ -110,12 +137,17 @@ func load_game() -> bool:
 	
 	if parse_result != OK:
 		push_error("Erro ao parsear JSON do save: " + json.get_error_message())
+		is_loading = false
 		return false
 	
 	save_data = json.data
 	
 	# Carregar conhecimentos desbloqueados
-	var knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
+	# Tentar primeiro como autoload, depois como grupo
+	var knowledge_manager = get_node_or_null("/root/KnowledgeManager")
+	if not knowledge_manager:
+		knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
+	
 	if knowledge_manager:
 		# Limpar conhecimentos atuais
 		if "unlocked_knowledge" in knowledge_manager:
@@ -131,6 +163,7 @@ func load_game() -> bool:
 		
 		print("✅ Jogo carregado com sucesso!")
 		print("   Conhecimentos restaurados: ", save_data.unlocked_knowledge.size())
+		print("   IDs restaurados: ", save_data.unlocked_knowledge)
 		is_loading = false  # Finalizar carregamento
 		save_loaded.emit()
 		return true

@@ -1,8 +1,11 @@
 {
 	"dialogue": [
 		"Bom dia! Como posso ajudar?",
-		"Estou sempre por aqui se precisar de algo.",
-		"Até mais!"
+		"Eu trabalho com [k=\"ligacao_quimica\"] todos os dias.",
+		"As [k=\"ligacao_quimica\"] são o que mantém os [k=\"atomo\"] unidos para formar [k=\"molecula\"]!",
+		"Quando diferentes [k=\"elemento_quimico\"] se unem através de [k=\"ligacao_quimica\"], formam [k=\"composto\"] com propriedades completamente novas.",
+		"Um [k=\"composto\"] pode ter características totalmente diferentes dos elementos que o compõem!",
+		"É fascinante como a natureza funciona, não acha?"
 	]
 }
 

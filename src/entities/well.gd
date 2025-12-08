@@ -132,6 +132,12 @@ func _enter_dungeon() -> void:
 	get_tree().change_scene_to_file(target_scene)
 
 func _save_scene_state() -> void:
+	# Salvar o jogo antes de trocar de cena
+	var save_manager = get_tree().get_first_node_in_group("save_manager")
+	if save_manager:
+		save_manager.save_game()
+		print("💾 Jogo salvo antes de trocar de cena")
+	
 	# Salvar zoom da câmera
 	var player = get_tree().get_first_node_in_group("player")
 	if player:

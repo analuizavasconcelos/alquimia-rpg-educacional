@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://jhadt6prsn74"]
+[gd_scene load_steps=37 format=4 uid="uid://jhadt6prsn74"]
 
 [ext_resource type="PackedScene" uid="uid://dd0gdtnbton7m" path="res://scenes/prefabs/player.tscn" id="1_player"]
 [ext_resource type="Texture2D" uid="uid://b4ybtqhd5cc3g" path="res://assets/sprites/tilesets/world/tileset/spr_tileset_sunnysideworld.png" id="2_7hyjw"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://cej4kn2m3yc3n" path="res://scenes/prefabs/npc_longhair.tscn" id="14_q7von"]
 [ext_resource type="PackedScene" uid="uid://b1r5vo6nfrwks" path="res://scenes/prefabs/npc_mophair.tscn" id="15_a726h"]
 [ext_resource type="Script" uid="uid://07sbjtlvd86u" path="res://src/ui/dialogue_manager.gd" id="16_dialogue_manager"]
-[ext_resource type="Script" uid="uid://bclk7rsr0x0j5" path="res://src/ui/knowledge_manager.gd" id="17_knowledge_manager"]
 [ext_resource type="PackedScene" path="res://scenes/ui/knowledge_notification.tscn" id="18_knowledge_notification"]
 [ext_resource type="PackedScene" uid="uid://clu1c812qcxqa" path="res://scenes/prefabs/well.tscn" id="19_fp3k1"]
 [ext_resource type="PackedScene" path="res://scenes/ui/knowledge_glossary.tscn" id="19_knowledge_glossary"]
@@ -10671,18 +10670,18 @@ position = Vector2(12, 361)
 position = Vector2(226, 273)
 
 [node name="NPC" parent="." instance=ExtResource("12_lc47e")]
-position = Vector2(258, 212)
+position = Vector2(118, 219)
 scale = Vector2(0.997922, 1)
 facing_left = true
 dialogue_file = "res://data/dialogues/npc_base.json"
 
 [node name="NPC2" parent="." instance=ExtResource("13_rifo5")]
-position = Vector2(132, 221)
+position = Vector2(-585, 336)
 dialogue_file = "res://data/dialogues/npc_curlyhair.json"
 interaction_distance = 20.0
 
 [node name="NPC3" parent="." instance=ExtResource("14_q7von")]
-position = Vector2(444, 219)
+position = Vector2(449, 213)
 facing_left = true
 dialogue_file = "res://data/dialogues/npc_longhair.json"
 interaction_distance = 20.0
@@ -10693,9 +10692,6 @@ dialogue_file = "res://data/dialogues/npc_mophair.json"
 
 [node name="DialogueManager" type="Node" parent="." groups=["dialogue_manager"]]
 script = ExtResource("16_dialogue_manager")
-
-[node name="KnowledgeManager" type="Node" parent="." groups=["knowledge_manager"]]
-script = ExtResource("17_knowledge_manager")
 
 [node name="KnowledgeNotification" parent="." instance=ExtResource("18_knowledge_notification")]
 visible = false

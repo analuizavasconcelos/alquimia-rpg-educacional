@@ -1,7 +1,11 @@
 {
 	"dialogue": [
 		"Oi! Você é novo por aqui?",
-		"Este vilarejo é muito acolhedor.",
-		"Tenho certeza que você vai gostar!"
+		"Eu estudo os [k=\"elemento_quimico\"] que compõem nosso mundo.",
+		"Cada [k=\"elemento_quimico\"] tem propriedades únicas que os tornam especiais!",
+		"Você sabia que todos os elementos estão organizados na [k=\"tabela_periodica\"]?",
+		"A [k=\"tabela_periodica\"] agrupa elementos com características similares, facilitando nosso estudo.",
+		"Por exemplo, alguns elementos são metais, outros são gases, e cada um tem seu lugar!",
+		"É uma forma incrível de entender como tudo funciona!"
 	]
 }

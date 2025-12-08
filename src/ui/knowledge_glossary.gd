@@ -31,8 +31,11 @@ func _ready() -> void:
 			close_button.pressed.connect(_on_close_button_pressed)
 			print("✅ Botão de fechar encontrado e conectado manualmente")
 	
-	# Buscar KnowledgeManager
-	knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
+	# Buscar KnowledgeManager (primeiro como autoload, depois como grupo)
+	knowledge_manager = get_node_or_null("/root/KnowledgeManager")
+	if not knowledge_manager:
+		knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
+	
 	if knowledge_manager:
 		knowledge_manager.knowledge_unlocked.connect(_on_knowledge_unlocked)
 		# Atualizar lista inicial
@@ -137,6 +140,9 @@ func _update_knowledge_list() -> void:
 			empty_label.visible = true
 	
 	if unlocked.size() > 0:
+		# Aguardar um frame para garantir que o ScrollContainer tenha tamanho definido
+		await get_tree().process_frame
+		
 		# Criar itens para cada conhecimento
 		var current_category = ""
 		for knowledge in unlocked:
@@ -150,6 +156,90 @@ func _update_knowledge_list() -> void:
 			var item = _create_knowledge_item(knowledge.name, knowledge.description)
 			knowledge_list.add_child(item)
 			knowledge_items[knowledge.id] = item
+		
+		# Forçar atualização do layout após adicionar todos os itens
+		await get_tree().process_frame
+		_update_item_heights()
+
+func _update_item_heights() -> void:
+	# Forçar recálculo do layout para que os labels calculem altura correta
+	if not knowledge_list:
+		return
+	
+	# Aguardar mais um frame para garantir que o layout foi atualizado
+	await get_tree().process_frame
+	
+	# Obter largura disponível do ScrollContainer
+	var scroll_container = knowledge_list.get_parent()
+	if not scroll_container or not scroll_container is ScrollContainer:
+		return
+	
+	# Garantir que o KnowledgeList tenha largura definida
+	var scroll_width = scroll_container.size.x
+	if scroll_width > 0:
+		knowledge_list.custom_minimum_size = Vector2(scroll_width, 0)
+	
+	# Aguardar mais um frame para os labels calcularem altura
+	await get_tree().process_frame
+	
+	# Ajustar cada painel baseado no tamanho real dos labels
+	for child in knowledge_list.get_children():
+		if not child is Panel:
+			continue
+		
+		# Encontrar os labels dentro do painel
+		var margin = child.get_child(0) if child.get_child_count() > 0 else null
+		if not margin or not margin is MarginContainer:
+			continue
+		
+		var vbox = margin.get_child(0) if margin.get_child_count() > 0 else null
+		if not vbox or not vbox is VBoxContainer:
+			continue
+		
+		# Calcular altura total baseada nos labels
+		var total_height = 0
+		var separation = vbox.get_theme_constant("separation")
+		if separation <= 0:
+			separation = 15
+		
+		for i in range(vbox.get_child_count()):
+			var label = vbox.get_child(i)
+			if not label is Label:
+				continue
+			
+			# Forçar atualização do layout do label
+			label.queue_redraw()
+			
+			# Usar o tamanho real do label após o layout ser calculado
+			var label_size = label.get_combined_minimum_size()
+			if label_size.y > 0:
+				total_height += label_size.y
+			else:
+				# Tentar usar get_line_count() se disponível
+				var font_size = label.get_theme_font_size("font_size")
+				var line_count = label.get_line_count()
+				if line_count > 0:
+					total_height += line_count * (font_size + 4)
+				else:
+					# Altura padrão baseada no tamanho da fonte
+					total_height += font_size + 8
+			
+			# Adicionar separação entre labels (exceto no último)
+			if i < vbox.get_child_count() - 1:
+				total_height += separation
+		
+		# Adicionar margens do MarginContainer
+		var margin_top = margin.get_theme_constant("margin_top")
+		if margin_top <= 0:
+			margin_top = 20
+		var margin_bottom = margin.get_theme_constant("margin_bottom")
+		if margin_bottom <= 0:
+			margin_bottom = 20
+		total_height += margin_top + margin_bottom
+		
+		# Ajustar altura mínima do painel (com um pequeno buffer)
+		if total_height > 0:
+			child.custom_minimum_size = Vector2(0, total_height + 10)
 
 func _sort_knowledge(a: Dictionary, b: Dictionary) -> bool:
 	if a.category != b.category:
@@ -183,6 +273,10 @@ func _create_knowledge_item(item_name: String, description: String) -> Panel:
 	style.corner_radius_bottom_left = 8
 	panel.add_theme_stylebox_override("panel", style)
 	
+	# Configurar flags de tamanho: expandir horizontalmente, ajustar verticalmente ao conteúdo
+	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	panel.size_flags_vertical = Control.SIZE_SHRINK_END
+	
 	# MarginContainer para padding interno
 	var margin = MarginContainer.new()
 	panel.add_child(margin)
@@ -191,17 +285,25 @@ func _create_knowledge_item(item_name: String, description: String) -> Panel:
 	margin.add_theme_constant_override("margin_top", 20)
 	margin.add_theme_constant_override("margin_right", 25)
 	margin.add_theme_constant_override("margin_bottom", 20)
+	margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	margin.size_flags_vertical = Control.SIZE_SHRINK_END
 	
 	var vbox = VBoxContainer.new()
 	margin.add_child(vbox)
 	vbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	vbox.add_theme_constant_override("separation", 15)
+	vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	vbox.size_flags_vertical = Control.SIZE_SHRINK_END
 	
 	var name_label = Label.new()
 	name_label.text = "• " + item_name
 	name_label.add_theme_color_override("font_color", Color(1.0, 0.84, 0.0, 1.0))  # Dourado
 	name_label.add_theme_font_size_override("font_size", 28)
 	name_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	name_label.size_flags_vertical = Control.SIZE_SHRINK_END
+	name_label.clip_contents = false
+	name_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	vbox.add_child(name_label)
 	
 	var desc_label = Label.new()
@@ -209,9 +311,13 @@ func _create_knowledge_item(item_name: String, description: String) -> Panel:
 	desc_label.add_theme_color_override("font_color", Color(0.9, 0.9, 0.9, 1.0))
 	desc_label.add_theme_font_size_override("font_size", 24)
 	desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	desc_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	desc_label.size_flags_vertical = Control.SIZE_SHRINK_END
+	desc_label.clip_contents = false
+	desc_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	vbox.add_child(desc_label)
 	
-	# Ajustar tamanho mínimo
-	panel.custom_minimum_size = Vector2(0, 120)
+	# Não definir tamanho mínimo - o painel se ajustará ao conteúdo automaticamente
+	# O VBoxContainer dentro do ScrollContainer calculará a altura correta dos labels
 	
 	return panel

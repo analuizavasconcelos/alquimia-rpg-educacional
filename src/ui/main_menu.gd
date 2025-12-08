@@ -135,7 +135,9 @@ func _start_new_game() -> void:
 		print("🆕 Novo jogo iniciado - Save anterior deletado")
 	
 	# Limpar conhecimentos desbloqueados
-	var knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
+	var knowledge_manager = get_node_or_null("/root/KnowledgeManager")
+	if not knowledge_manager:
+		knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
 	if knowledge_manager and "unlocked_knowledge" in knowledge_manager:
 		knowledge_manager.unlocked_knowledge.clear()
 		print("🆕 Conhecimentos resetados")

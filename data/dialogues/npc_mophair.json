@@ -2,6 +2,11 @@
 	"dialogue": [
 		"Olá, viajante!",
 		"Bem-vindo ao nosso vilarejo.",
+		"Eu estudo as transformações que acontecem ao nosso redor.",
+		"Quando uma [k=\"substancia\"] se transforma em outra, chamamos isso de [k=\"reacao_quimica\"]!",
+		"Durante uma [k=\"reacao_quimica\"], as [k=\"ligacao_quimica\"] são quebradas e novas são formadas.",
+		"Essas transformações estão acontecendo o tempo todo, mesmo que não percebamos.",
+		"Por exemplo, quando cozinhamos ou quando algo queima, estamos vendo [k=\"reacao_quimica\"] em ação!",
 		"Espero que encontre o que procura por aqui!"
 	]
 }

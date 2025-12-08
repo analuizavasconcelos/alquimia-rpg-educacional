@@ -98,11 +98,15 @@ layout_mode = 2
 [node name="ScrollContainer" type="ScrollContainer" parent="Control/Panel/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
 
 [node name="KnowledgeList" type="VBoxContainer" parent="Control/Panel/VBox/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
 add_theme_constant_override("separation", 18)
+custom_minimum_size = Vector2(0, 0)
 
 [node name="EmptyLabel" type="Label" parent="Control/Panel/VBox/ScrollContainer/KnowledgeList"]
 layout_mode = 2

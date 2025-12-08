@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://dsfhloe8pdf6i"]
+[gd_scene load_steps=13 format=4 uid="uid://dsfhloe8pdf6i"]
 
 [ext_resource type="PackedScene" uid="uid://cvuhx5et3y5kp" path="res://scenes/player.tscn" id="2_s5a2w"]
 [ext_resource type="Texture2D" uid="uid://b4ybtqhd5cc3g" path="res://assets/sprites/tilesets/world/tileset/spr_tileset_sunnysideworld.png" id="2_srduu"]
 [ext_resource type="PackedScene" uid="uid://clu1c812qcxqa" path="res://scenes/prefabs/well.tscn" id="3_yc5ro"]
 [ext_resource type="PackedScene" uid="uid://bmy0dwtf7efpb" path="res://scenes/ui/mobile_controls.tscn" id="4_mobile_controls"]
+[ext_resource type="PackedScene" path="res://scenes/ui/knowledge_notification.tscn" id="6_knowledge_notification"]
+[ext_resource type="PackedScene" path="res://scenes/ui/knowledge_glossary.tscn" id="7_knowledge_glossary"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s5a2w"]
 texture = ExtResource("2_srduu")
@@ -4721,3 +4723,9 @@ position = Vector2(691, 442)
 
 [node name="Well" parent="." instance=ExtResource("3_yc5ro")]
 position = Vector2(621, 442)
+
+[node name="KnowledgeNotification" parent="." instance=ExtResource("6_knowledge_notification")]
+visible = false
+
+[node name="KnowledgeGlossary" parent="." instance=ExtResource("7_knowledge_glossary")]
+visible = false

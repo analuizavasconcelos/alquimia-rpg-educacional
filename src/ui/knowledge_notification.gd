@@ -20,7 +20,9 @@ func _ready() -> void:
 		panel.gui_input.connect(_on_panel_clicked)
 	
 	# Conectar ao knowledge_manager
-	var knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
+	var knowledge_manager = get_node_or_null("/root/KnowledgeManager")
+	if not knowledge_manager:
+		knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
 	if knowledge_manager:
 		knowledge_manager.knowledge_unlocked.connect(_on_knowledge_unlocked)
 	

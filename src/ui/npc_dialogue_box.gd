@@ -74,7 +74,9 @@ func _process_knowledge_tags(line: String) -> String:
 	# Substituir tags [knowledge="id"] ou [k="id"] por texto destacado
 	# Usar BBCode do Godot para destacar: [color=#FFD700]texto[/color]
 	var processed = line
-	var knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
+	var knowledge_manager = get_node_or_null("/root/KnowledgeManager")
+	if not knowledge_manager:
+		knowledge_manager = get_tree().get_first_node_in_group("knowledge_manager")
 	
 	# Debug: verificar se KnowledgeManager existe
 	if not knowledge_manager:
