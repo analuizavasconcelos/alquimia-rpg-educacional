@@ -14,6 +14,7 @@ var save_data: Dictionary = {
 	"version": "1.0",
 	"timestamp": "",
 	"unlocked_knowledge": [],
+	"quiz_stats": {},  # Métricas das perguntas: { "id_da_pergunta": { attempts, wrong, solved, first_try_correct, last_answered } }
 	"player_position": null,  # Para expansão futura
 	"current_scene": null     # Para expansão futura
 }
@@ -141,7 +142,10 @@ func load_game() -> bool:
 		return false
 	
 	save_data = json.data
-	
+	# Saves antigos (antes das perguntas) não têm quiz_stats
+	if not save_data.has("quiz_stats") or not (save_data["quiz_stats"] is Dictionary):
+		save_data["quiz_stats"] = {}
+
 	# Carregar conhecimentos desbloqueados
 	# Tentar primeiro como autoload, depois como grupo
 	var knowledge_manager = get_node_or_null("/root/KnowledgeManager")
@@ -187,6 +191,7 @@ func delete_save() -> bool:
 		push_error("Erro ao deletar save: " + str(error))
 		return false
 	
+	save_data["quiz_stats"] = {}  # Novo jogo começa sem métricas
 	print("🗑️ Save game deletado")
 	save_deleted.emit()
 	return true
@@ -214,6 +219,51 @@ func get_save_info() -> Dictionary:
 		"timestamp": data.get("timestamp", ""),
 		"knowledge_count": data.get("unlocked_knowledge", []).size(),
 		"version": data.get("version", "1.0")
+	}
+
+# Registrar uma resposta do jogador a uma pergunta (chamado pelo DialogueManager)
+func record_answer(question_id: String, is_correct: bool) -> void:
+	if not (save_data.get("quiz_stats") is Dictionary):
+		save_data["quiz_stats"] = {}
+	var stats: Dictionary = save_data["quiz_stats"]
+	var entry: Dictionary = stats.get(question_id, {
+		"attempts": 0,
+		"wrong": 0,
+		"solved": false,
+		"first_try_correct": false
+	})
+
+	if entry["attempts"] == 0:
+		entry["first_try_correct"] = is_correct  # Só a primeira resposta da vida conta
+	entry["attempts"] += 1
+	if is_correct:
+		entry["solved"] = true
+	else:
+		entry["wrong"] += 1
+	entry["last_answered"] = Time.get_datetime_string_from_system()
+	stats[question_id] = entry
+
+	if not is_loading:
+		save_game()
+
+# Resumo simples das métricas (útil para uma tela de resultados e para o TCC)
+func get_quiz_summary() -> Dictionary:
+	var stats: Dictionary = save_data.get("quiz_stats", {})
+	var solved := 0
+	var first_try := 0
+	var wrong_total := 0
+	for question_id in stats:
+		var entry: Dictionary = stats[question_id]
+		if entry.get("solved", false):
+			solved += 1
+		if entry.get("first_try_correct", false):
+			first_try += 1
+		wrong_total += int(entry.get("wrong", 0))
+	return {
+		"questions_answered": stats.size(),
+		"questions_solved": solved,
+		"first_try_correct": first_try,
+		"wrong_answers_total": wrong_total
 	}
 
 # Salvar automaticamente quando um conhecimento é desbloqueado
