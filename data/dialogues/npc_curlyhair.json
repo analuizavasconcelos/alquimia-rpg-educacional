@@ -5,6 +5,20 @@
 		"Cada [k=\"elemento_quimico\"] tem propriedades únicas que os tornam especiais!",
 		"Você sabia que todos os elementos estão organizados na [k=\"tabela_periodica\"]?",
 		"A [k=\"tabela_periodica\"] agrupa elementos com características similares, facilitando nosso estudo.",
+		"Eles ficam em ordem crescente da quantidade de prótons que cada átomo tem no núcleo.",
+		{
+			"type": "question",
+			"id": "q_curlyhair_numero_atomico",
+			"text": "Essa quantidade de prótons no núcleo é o que ordena a tabela. Qual é o nome dela?",
+			"options": [
+				"Número atômico",
+				"Massa molar",
+				"Carga elétrica"
+			],
+			"correct": 0,
+			"feedback_correct": "Exato! O número atômico (quantidade de prótons) identifica cada elemento químico.",
+			"feedback_wrong": "Não foi dessa vez. Pense na grandeza que identifica o elemento: o número de prótons."
+		},
 		"Por exemplo, alguns elementos são metais, outros são gases, e cada um tem seu lugar!",
 		"É uma forma incrível de entender como tudo funciona!"
 	]

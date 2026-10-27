@@ -7,6 +7,19 @@
 		"E quando átomos perdem ou ganham elétrons, eles se tornam [k=\"ion\"]!",
 		"É incrível como essas pequenas partículas formam tudo que conhecemos.",
 		"Por exemplo, a água que bebemos é uma [k=\"molecula\"] formada por diferentes [k=\"atomo\"]!",
+		{
+			"type": "question",
+			"id": "q_base_ion",
+			"text": "Vamos testar? Um átomo que ganhou ou perdeu elétrons passa a ter carga elétrica. Como chamamos isso?",
+			"options": [
+				"Molécula",
+				"Íon",
+				"Elemento químico"
+			],
+			"correct": 1,
+			"feedback_correct": "Isso! Ao ganhar ou perder elétrons, o átomo vira um íon.",
+			"feedback_wrong": "Quase! Pense no nome dado ao átomo que fica com carga elétrica."
+		},
 		"Se precisar de algo, é só me chamar!"
 	]
 }

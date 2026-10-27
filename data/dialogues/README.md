@@ -18,6 +18,47 @@ Os diálogos são armazenados em arquivos JSON na pasta `data/dialogues/`. Cada 
 }
 ```
 
+## ❓ Perguntas no diálogo (novo)
+
+Além de texto, uma entrada de `dialogue` pode ser um **objeto** do tipo pergunta. Textos e perguntas podem ser misturados livremente na mesma lista.
+
+```json
+{
+	"dialogue": [
+		"Vou te testar!",
+		{
+			"type": "question",
+			"id": "q_shorthair_solucao",
+			"text": "Sal dissolvido por completo na água forma o quê?",
+			"options": ["Substância pura", "Solução", "Elemento químico"],
+			"correct": 1,
+			"feedback_correct": "Correto! Isso é uma solução.",
+			"feedback_wrong": "Quase! Pense em uma mistura uniforme.",
+			"unlock": ["solucao"]
+		},
+		"Muito bem!"
+	]
+}
+```
+
+| Campo | Obrigatório | Descrição |
+|---|---|---|
+| `type` | sim | Sempre `"question"` |
+| `text` | sim | Enunciado (aceita BBCode e tags `[k="id"]` só para destaque) |
+| `options` | sim | Lista com 2 ou mais alternativas |
+| `correct` | sim | Posição da alternativa certa, **começando em 0** |
+| `id` | recomendado | Identificador único, usado nas métricas do save. Se faltar, é gerado automaticamente |
+| `feedback_correct` | não | Explicação mostrada ao acertar |
+| `feedback_wrong` | não | Dica mostrada ao errar |
+| `unlock` | não | Id (ou lista de ids) de conhecimentos desbloqueados **só quando o jogador acerta** |
+
+**Como funciona:**
+- O jogador escolhe clicando na opção ou pressionando as teclas **1, 2, 3...**
+- Se errar, a opção fica vermelha, aparece a dica e ele pode tentar de novo. Se acertar, o feedback aparece e **E/clique** continua a conversa.
+- Enquanto a pergunta não for respondida corretamente, o diálogo não avança.
+- Cada resposta é registrada no save em `quiz_stats` (tentativas, erros, se acertou de primeira).
+- Se a pergunta estiver mal escrita (ex.: `correct` fora da lista), o jogo mostra um erro no painel **Output** e pula a pergunta.
+
 ## 🎮 Como Usar
 
 ### 1. Criar um arquivo de diálogo

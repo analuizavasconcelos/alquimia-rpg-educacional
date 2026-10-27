@@ -5,7 +5,19 @@
 		"As [k=\"ligacao_quimica\"] são o que mantém os [k=\"atomo\"] unidos para formar [k=\"molecula\"]!",
 		"Quando diferentes [k=\"elemento_quimico\"] se unem através de [k=\"ligacao_quimica\"], formam [k=\"composto\"] com propriedades completamente novas.",
 		"Um [k=\"composto\"] pode ter características totalmente diferentes dos elementos que o compõem!",
+		{
+			"type": "question",
+			"id": "q_longhair_composto",
+			"text": "Qual destas frases descreve melhor um composto?",
+			"options": [
+				"Formado por um único tipo de átomo",
+				"Formado por dois ou mais elementos diferentes ligados",
+				"Qualquer material que seja um gás"
+			],
+			"correct": 1,
+			"feedback_correct": "Correto! A água (hidrogênio + oxigênio) é um bom exemplo de composto.",
+			"feedback_wrong": "Hmm... lembre que um composto junta elementos DIFERENTES através de ligações químicas."
+		},
 		"É fascinante como a natureza funciona, não acha?"
 	]
 }
-

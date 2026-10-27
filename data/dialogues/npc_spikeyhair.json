@@ -5,7 +5,19 @@
 		"Os [k=\"acido\"] têm um sabor azedo característico, enquanto as [k=\"base\"] são amargas.",
 		"Para medir quão ácido ou básico algo é, usamos o [k=\"ph\"]!",
 		"É uma escala que vai de 0 a 14, onde 7 é neutro.",
+		{
+			"type": "question",
+			"id": "q_spikeyhair_ph_limao",
+			"text": "No laboratório, medi o pH de um suco de limão e deu 2. O que isso indica?",
+			"options": [
+				"É um ácido",
+				"É neutro",
+				"É uma base"
+			],
+			"correct": 0,
+			"feedback_correct": "Isso! Valores de pH abaixo de 7 indicam meio ácido: quanto menor, mais ácido.",
+			"feedback_wrong": "Lembre: 7 é neutro. Valores menores que 7 são ácidos e maiores que 7 são básicos."
+		},
 		"Quer saber mais sobre isso? Volte quando quiser!"
 	]
 }
-

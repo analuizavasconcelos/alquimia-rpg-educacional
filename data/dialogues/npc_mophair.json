@@ -7,7 +7,20 @@
 		"Durante uma [k=\"reacao_quimica\"], as [k=\"ligacao_quimica\"] são quebradas e novas são formadas.",
 		"Essas transformações estão acontecendo o tempo todo, mesmo que não percebamos.",
 		"Por exemplo, quando cozinhamos ou quando algo queima, estamos vendo [k=\"reacao_quimica\"] em ação!",
+		{
+			"type": "question",
+			"id": "q_mophair_reacao",
+			"text": "Qual destes é um exemplo de reação química?",
+			"options": [
+				"Gelo derretendo",
+				"Açúcar se dissolvendo na água",
+				"Ferro enferrujando",
+				"Papel sendo rasgado"
+			],
+			"correct": 2,
+			"feedback_correct": "Isso! Na ferrugem surge uma substância nova (óxido de ferro). Nos outros casos o material só muda de estado ou de forma.",
+			"feedback_wrong": "Pense: nesse caso aparece uma substância nova, ou o material só mudou de forma ou de estado?"
+		},
 		"Espero que encontre o que procura por aqui!"
 	]
 }
-

@@ -3,8 +3,23 @@
 		"Olá! Sou especialista em misturas e soluções.",
 		"Você sabia que nem tudo que vemos é uma [k=\"substancia\"] pura?",
 		"Muitas vezes trabalhamos com [k=\"mistura\"] de diferentes materiais.",
-		"Quando algo se dissolve completamente, chamamos de [k=\"solucao\"]!",
+		"Algumas misturas se dissolvem por completo e ficam uniformes. Será que você sabe o nome disso?",
+		{
+			"type": "question",
+			"id": "q_shorthair_solucao",
+			"text": "Se eu dissolver sal na água e ele sumir por completo, formando uma mistura uniforme (homogênea), como chamamos o resultado?",
+			"options": [
+				"Substância pura",
+				"Solução",
+				"Elemento químico"
+			],
+			"correct": 1,
+			"feedback_correct": "Correto! Quando um soluto (o sal) se dissolve por completo em um solvente (a água), formamos uma solução.",
+			"feedback_wrong": "Quase! Pense em uma mistura em que não dá para enxergar os componentes separados.",
+			"unlock": [
+				"solucao"
+			]
+		},
 		"É assim que fazemos muitos dos nossos preparos aqui no vilarejo."
 	]
 }
-
