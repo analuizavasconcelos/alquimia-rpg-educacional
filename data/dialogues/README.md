@@ -54,7 +54,7 @@ Além de texto, uma entrada de `dialogue` pode ser um **objeto** do tipo pergunt
 
 **Como funciona:**
 - O jogador escolhe clicando na opção ou pressionando as teclas **1, 2, 3...**
-- Se errar, a opção fica vermelha, aparece a dica e ele pode tentar de novo. Se acertar, o feedback aparece e **E/clique** continua a conversa.
+- Se errar, a opção fica vermelha, aparece a dica e ele pode tentar de novo. Se acertar, o feedback aparece e **Enter/Espaço ou clique** continua a conversa.
 - Enquanto a pergunta não for respondida corretamente, o diálogo não avança.
 - Cada resposta é registrada no save em `quiz_stats` (tentativas, erros, se acertou de primeira).
 - Se a pergunta estiver mal escrita (ex.: `correct` fora da lista), o jogo mostra um erro no painel **Output** e pula a pergunta.
