@@ -305,6 +305,20 @@ func _try_interact() -> void:
 		elif well.has_method("interact"):
 			print("⚠️ Well encontrado mas player não está próximo (player_nearby: ", player_nearby, ")")
 
+	# Buscar mesa de alquimia próxima
+	for table in tree.get_nodes_in_group("alchemy_table"):
+		if table.has_method("is_player_nearby") and table.is_player_nearby() and table.has_method("interact"):
+			print("🔘 Interagindo com a Mesa de Alquimia")
+			table.interact()
+			return
+
+	# Buscar porta de interior próxima (ex.: biblioteca)
+	for door in tree.get_nodes_in_group("interior_door"):
+		if door.has_method("is_player_nearby") and door.is_player_nearby() and door.has_method("interact"):
+			print("🔘 Interagindo com a porta")
+			door.interact()
+			return
+
 # Função para verificar rigorosamente se o diálogo está realmente ativo
 func _is_dialogue_really_active() -> bool:
 	var tree = get_tree()

@@ -17,6 +17,25 @@ func get_spawn_at_well() -> bool:
 func clear_spawn_flag() -> void:
 	should_spawn_at_well = false
 
+# Posição de retorno: ao entrar em um interior (ex.: biblioteca), a porta guarda onde o jogador
+# deve reaparecer ao voltar para a cena de origem.
+var return_position: Vector2 = Vector2.ZERO
+var return_scene: String = ""
+
+func set_return_position(position: Vector2, scene_path: String) -> void:
+	return_position = position
+	return_scene = scene_path
+
+func has_return_for(scene_path: String) -> bool:
+	return not return_scene.is_empty() and return_scene == scene_path
+
+# Devolve a posição guardada e limpa o registro (só vale uma vez)
+func take_return_position() -> Vector2:
+	var result: Vector2 = return_position
+	return_position = Vector2.ZERO
+	return_scene = ""
+	return result
+
 # Salvar estado da câmera
 func save_camera_zoom(zoom: Vector2) -> void:
 	saved_camera_zoom = zoom

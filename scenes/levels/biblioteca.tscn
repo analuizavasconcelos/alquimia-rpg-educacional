@@ -1,0 +1,33 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://src/levels/biblioteca.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/alchemy_table.tscn" id="3_table"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/interior_door.tscn" id="4_door"]
+[ext_resource type="PackedScene" path="res://scenes/ui/mobile_controls.tscn" id="5_mobile_controls"]
+[ext_resource type="PackedScene" path="res://scenes/ui/knowledge_notification.tscn" id="6_knowledge_notification"]
+[ext_resource type="PackedScene" path="res://scenes/ui/knowledge_glossary.tscn" id="7_knowledge_glossary"]
+
+[node name="Biblioteca" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_script")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(120, 112)
+
+[node name="AlchemyTable" parent="." instance=ExtResource("3_table")]
+position = Vector2(120, 86)
+
+[node name="ExitDoor" parent="." instance=ExtResource("4_door")]
+position = Vector2(120, 142)
+target_scene = "res://scenes/levels/vilarejo.tscn"
+hint_text = "Enter/Espaço: Sair da biblioteca"
+remember_return_position = false
+
+[node name="MobileControls" parent="." instance=ExtResource("5_mobile_controls")]
+
+[node name="KnowledgeNotification" parent="." instance=ExtResource("6_knowledge_notification")]
+visible = false
+
+[node name="KnowledgeGlossary" parent="." instance=ExtResource("7_knowledge_glossary")]
+visible = false

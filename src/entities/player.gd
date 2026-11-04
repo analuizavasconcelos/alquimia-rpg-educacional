@@ -19,6 +19,17 @@ func _ready() -> void:
 	# Verificar se deve spawnar próximo ao well
 	_check_spawn_at_well()
 
+	# Voltando de um interior (ex.: biblioteca): reaparecer em frente à porta
+	call_deferred("_apply_return_position")
+
+func _apply_return_position() -> void:
+	var transition_manager = get_node_or_null("/root/SceneTransitionManager")
+	if not transition_manager or not transition_manager.has_method("has_return_for"):
+		return
+	var scene = get_tree().current_scene
+	if scene and transition_manager.has_return_for(scene.scene_file_path):
+		global_position = transition_manager.take_return_position()
+
 func _restore_camera_zoom() -> void:
 	var transition_manager = get_node_or_null("/root/SceneTransitionManager")
 	if transition_manager:
@@ -45,8 +56,15 @@ func _physics_process(_delta: float) -> void:
 	if glossary and glossary.visible:
 		glossary_open = true
 	
-	# Se há diálogo realmente ativo ou glossário aberto, não permitir movimentação
-	if dialogue_really_active or glossary_open:
+	# Outras janelas que prendem o jogador (ex.: mesa de alquimia) entram no grupo "blocks_player_movement"
+	var other_window_open = false
+	for blocker in get_tree().get_nodes_in_group("blocks_player_movement"):
+		if blocker.visible:
+			other_window_open = true
+			break
+
+	# Se há diálogo realmente ativo, glossário ou outra janela aberta, não permitir movimentação
+	if dialogue_really_active or glossary_open or other_window_open:
 		velocity = Vector2.ZERO
 		update_animation(Vector2.ZERO)
 		return
