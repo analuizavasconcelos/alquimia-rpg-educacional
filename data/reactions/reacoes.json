@@ -1,0 +1,137 @@
+{
+	"reactions": [
+		{
+			"id": "sintese_agua",
+			"reagents": [
+				"hidrogenio",
+				"oxigenio"
+			],
+			"products": [
+				"agua"
+			],
+			"equation": "2 H2 + O2 -> 2 H2O",
+			"type": "Síntese",
+			"knowledge": [
+				"sintese"
+			],
+			"explanation": "Duas substâncias simples se uniram em uma só, a água. Repare nos coeficientes: são necessárias 2 moléculas de H2 para cada O2. A mesma quantidade de átomos de cada elemento existe antes e depois da reação."
+		},
+		{
+			"id": "sintese_sal",
+			"reagents": [
+				"sodio",
+				"cloro"
+			],
+			"products": [
+				"cloreto_sodio"
+			],
+			"equation": "2 Na + Cl2 -> 2 NaCl",
+			"type": "Síntese",
+			"knowledge": [
+				"sintese"
+			],
+			"explanation": "Um metal muito reativo e um gás tóxico se combinam e formam o sal de cozinha, uma substância completamente diferente e segura. É a ligação iônica em ação."
+		},
+		{
+			"id": "combustao_carbono",
+			"reagents": [
+				"carbono",
+				"oxigenio"
+			],
+			"products": [
+				"dioxido_carbono"
+			],
+			"equation": "C + O2 -> CO2",
+			"type": "Combustão",
+			"knowledge": [
+				"combustao"
+			],
+			"explanation": "Combustão completa do carbono: ele reage com o oxigênio e libera energia. É o que acontece quando o carvão queima."
+		},
+		{
+			"id": "combustao_magnesio",
+			"reagents": [
+				"magnesio",
+				"oxigenio"
+			],
+			"products": [
+				"oxido_magnesio"
+			],
+			"equation": "2 Mg + O2 -> 2 MgO",
+			"type": "Combustão",
+			"knowledge": [
+				"combustao"
+			],
+			"explanation": "O magnésio queima com uma luz branca muito forte, e o produto é um óxido. Por isso ele era usado em flashes de máquinas fotográficas antigas."
+		},
+		{
+			"id": "oxidacao_ferro",
+			"reagents": [
+				"ferro",
+				"oxigenio"
+			],
+			"products": [
+				"oxido_ferro"
+			],
+			"equation": "4 Fe + 3 O2 -> 2 Fe2O3",
+			"type": "Oxidação",
+			"knowledge": [
+				"oxidacao",
+				"reacao_quimica"
+			],
+			"explanation": "É a ferrugem! O ferro perde elétrons para o oxigênio (oxidação). É uma reação lenta, mas que muda a substância: a ferrugem tem propriedades diferentes do ferro."
+		},
+		{
+			"id": "neutralizacao_sal",
+			"reagents": [
+				"acido_cloridrico",
+				"hidroxido_sodio"
+			],
+			"products": [
+				"cloreto_sodio",
+				"agua"
+			],
+			"equation": "HCl + NaOH -> NaCl + H2O",
+			"type": "Neutralização",
+			"knowledge": [
+				"neutralizacao"
+			],
+			"explanation": "Um ácido e uma base se neutralizam, formando sal e água. O pH da mistura se aproxima de 7."
+		},
+		{
+			"id": "decomposicao_calcario",
+			"reagents": [
+				"carbonato_calcio",
+				"calor"
+			],
+			"products": [
+				"oxido_calcio",
+				"dioxido_carbono"
+			],
+			"equation": "CaCO3 -> CaO + CO2",
+			"type": "Decomposição",
+			"knowledge": [
+				"decomposicao"
+			],
+			"explanation": "Com aquecimento, uma única substância se quebra em duas. É assim que se produz a cal usada na construção."
+		},
+		{
+			"id": "bicarbonato_vinagre",
+			"reagents": [
+				"bicarbonato",
+				"vinagre"
+			],
+			"products": [
+				"acetato_sodio",
+				"agua",
+				"dioxido_carbono"
+			],
+			"equation": "NaHCO3 + CH3COOH -> CH3COONa + H2O + CO2",
+			"type": "Dupla troca",
+			"knowledge": [
+				"dupla_troca"
+			],
+			"explanation": "As bolhas são o gás carbônico (CO2) sendo liberado. É a famosa experiência do vulcão de bicarbonato com vinagre."
+		}
+	]
+}

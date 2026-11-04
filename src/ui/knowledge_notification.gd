@@ -10,6 +10,7 @@ var tween: Tween
 var is_showing: bool = false
 
 func _ready() -> void:
+	layer = 50  # Fica acima de outras janelas (ex.: mesa de alquimia, layer 10)
 	visible = false
 	if control:
 		control.visible = false
@@ -83,4 +84,3 @@ func _on_dialogue_next(_line: String) -> void:
 	# Esconder o popup quando o diálogo avançar
 	if is_showing:
 		hide_notification()
-

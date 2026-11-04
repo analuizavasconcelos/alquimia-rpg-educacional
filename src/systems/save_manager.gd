@@ -15,6 +15,13 @@ var save_data: Dictionary = {
 	"timestamp": "",
 	"unlocked_knowledge": [],
 	"quiz_stats": {},  # Métricas das perguntas: { "id_da_pergunta": { attempts, wrong, solved, first_try_correct, last_answered } }
+	"discovered_reactions": [],  # Ids das reações já descobertas na mesa de alquimia
+	"craft_stats": {  # Métricas do crafting
+		"attempts": 0,
+		"successes": 0,
+		"failures": 0,
+		"failed_combos": {}  # { "id_a|id_b": quantas_vezes }
+	},
 	"player_position": null,  # Para expansão futura
 	"current_scene": null     # Para expansão futura
 }
@@ -142,9 +149,10 @@ func load_game() -> bool:
 		return false
 	
 	save_data = json.data
-	# Saves antigos (antes das perguntas) não têm quiz_stats
+	# Saves antigos (antes das perguntas e do crafting) não têm esses campos
 	if not save_data.has("quiz_stats") or not (save_data["quiz_stats"] is Dictionary):
 		save_data["quiz_stats"] = {}
+	_ensure_craft_data()
 
 	# Carregar conhecimentos desbloqueados
 	# Tentar primeiro como autoload, depois como grupo
@@ -192,6 +200,9 @@ func delete_save() -> bool:
 		return false
 	
 	save_data["quiz_stats"] = {}  # Novo jogo começa sem métricas
+	save_data["discovered_reactions"] = []
+	save_data["craft_stats"] = {}
+	_ensure_craft_data()
 	print("🗑️ Save game deletado")
 	save_deleted.emit()
 	return true
@@ -245,6 +256,43 @@ func record_answer(question_id: String, is_correct: bool) -> void:
 
 	if not is_loading:
 		save_game()
+
+# Garante que os campos do crafting existem (saves antigos e "novo jogo")
+func _ensure_craft_data() -> void:
+	if not (save_data.get("discovered_reactions") is Array):
+		save_data["discovered_reactions"] = []
+	if not (save_data.get("craft_stats") is Dictionary):
+		save_data["craft_stats"] = {}
+	var stats: Dictionary = save_data["craft_stats"]
+	for counter in ["attempts", "successes", "failures"]:
+		if not stats.has(counter):
+			stats[counter] = 0
+	if not (stats.get("failed_combos") is Dictionary):
+		stats["failed_combos"] = {}
+
+# Registrar uma tentativa na mesa de alquimia (chamado pela interface do crafting).
+# reaction_id vazio = a combinação não reagiu.
+func record_craft(combo_key: String, reaction_id: String) -> void:
+	_ensure_craft_data()
+	var stats: Dictionary = save_data["craft_stats"]
+	stats["attempts"] = int(stats["attempts"]) + 1
+
+	if reaction_id.is_empty():
+		stats["failures"] = int(stats["failures"]) + 1
+		var failed_combos: Dictionary = stats["failed_combos"]
+		failed_combos[combo_key] = int(failed_combos.get(combo_key, 0)) + 1
+	else:
+		stats["successes"] = int(stats["successes"]) + 1
+		var discovered: Array = save_data["discovered_reactions"]
+		if not (reaction_id in discovered):
+			discovered.append(reaction_id)
+
+	if not is_loading:
+		save_game()
+
+func get_discovered_reactions() -> Array:
+	_ensure_craft_data()
+	return save_data["discovered_reactions"].duplicate()
 
 # Resumo simples das métricas (útil para uma tela de resultados e para o TCC)
 func get_quiz_summary() -> Dictionary:

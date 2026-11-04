@@ -1,0 +1,154 @@
+{
+	"substances": [
+		{
+			"id": "hidrogenio",
+			"name": "Hidrogênio",
+			"formula": "H2",
+			"group": "Não metal (gás)",
+			"description": "O elemento mais leve e simples do universo. Em condições normais é um gás inflamável."
+		},
+		{
+			"id": "oxigenio",
+			"name": "Oxigênio",
+			"formula": "O2",
+			"group": "Não metal (gás)",
+			"description": "Gás que respiramos e que participa de combustões e da formação de ferrugem."
+		},
+		{
+			"id": "sodio",
+			"name": "Sódio",
+			"formula": "Na",
+			"group": "Metal alcalino",
+			"description": "Metal mole e muito reativo. Reage violentamente com a água e com muitos não metais."
+		},
+		{
+			"id": "cloro",
+			"name": "Cloro",
+			"formula": "Cl2",
+			"group": "Não metal (gás)",
+			"description": "Gás amarelo-esverdeado, tóxico e muito reativo."
+		},
+		{
+			"id": "carbono",
+			"name": "Carbono",
+			"formula": "C",
+			"group": "Não metal (sólido)",
+			"description": "Base da química orgânica. Aparece no carvão, no grafite e no diamante."
+		},
+		{
+			"id": "ferro",
+			"name": "Ferro",
+			"formula": "Fe",
+			"group": "Metal",
+			"description": "Metal muito usado em ferramentas e construções. Enferruja em contato com oxigênio e umidade."
+		},
+		{
+			"id": "magnesio",
+			"name": "Magnésio",
+			"formula": "Mg",
+			"group": "Metal alcalino-terroso",
+			"description": "Metal leve que queima com uma luz branca muito intensa."
+		},
+		{
+			"id": "carbonato_calcio",
+			"name": "Carbonato de cálcio",
+			"formula": "CaCO3",
+			"group": "Sal",
+			"description": "Principal componente do calcário, do mármore e da casca de ovo."
+		},
+		{
+			"id": "bicarbonato",
+			"name": "Bicarbonato de sódio",
+			"formula": "NaHCO3",
+			"group": "Sal (caráter básico)",
+			"description": "Pó branco usado em receitas e como antiácido."
+		},
+		{
+			"id": "acido_cloridrico",
+			"name": "Ácido clorídrico",
+			"formula": "HCl",
+			"group": "Ácido",
+			"description": "Ácido forte, presente também no suco gástrico do estômago.",
+			"requires_knowledge": "acido"
+		},
+		{
+			"id": "vinagre",
+			"name": "Ácido acético (vinagre)",
+			"formula": "CH3COOH",
+			"group": "Ácido",
+			"description": "Ácido fraco responsável pelo sabor e pelo cheiro do vinagre.",
+			"requires_knowledge": "acido"
+		},
+		{
+			"id": "hidroxido_sodio",
+			"name": "Hidróxido de sódio",
+			"formula": "NaOH",
+			"group": "Base",
+			"description": "Base forte e corrosiva, conhecida como soda cáustica.",
+			"requires_knowledge": "base"
+		},
+		{
+			"id": "calor",
+			"name": "Calor",
+			"formula": "",
+			"group": "Condição",
+			"description": "Energia fornecida ao sistema. Algumas reações só acontecem com aquecimento."
+		},
+		{
+			"id": "agua",
+			"name": "Água",
+			"formula": "H2O",
+			"group": "Composto molecular",
+			"product_only": true,
+			"description": "Composto formado por hidrogênio e oxigênio."
+		},
+		{
+			"id": "cloreto_sodio",
+			"name": "Cloreto de sódio (sal de cozinha)",
+			"formula": "NaCl",
+			"group": "Sal",
+			"product_only": true,
+			"description": "O sal de cozinha: composto iônico formado por Na+ e Cl-."
+		},
+		{
+			"id": "dioxido_carbono",
+			"name": "Dióxido de carbono",
+			"formula": "CO2",
+			"group": "Óxido",
+			"product_only": true,
+			"description": "Gás produzido na respiração e em combustões."
+		},
+		{
+			"id": "oxido_ferro",
+			"name": "Óxido de ferro III (ferrugem)",
+			"formula": "Fe2O3",
+			"group": "Óxido",
+			"product_only": true,
+			"description": "A ferrugem comum, formada quando o ferro reage com o oxigênio."
+		},
+		{
+			"id": "oxido_magnesio",
+			"name": "Óxido de magnésio",
+			"formula": "MgO",
+			"group": "Óxido",
+			"product_only": true,
+			"description": "Pó branco formado na queima do magnésio."
+		},
+		{
+			"id": "oxido_calcio",
+			"name": "Óxido de cálcio (cal virgem)",
+			"formula": "CaO",
+			"group": "Óxido",
+			"product_only": true,
+			"description": "Sólido branco usado na construção civil."
+		},
+		{
+			"id": "acetato_sodio",
+			"name": "Acetato de sódio",
+			"formula": "CH3COONa",
+			"group": "Sal",
+			"product_only": true,
+			"description": "Sal formado pela reação entre o vinagre e o bicarbonato."
+		}
+	]
+}

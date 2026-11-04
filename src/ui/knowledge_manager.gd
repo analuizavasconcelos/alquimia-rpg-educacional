@@ -74,6 +74,37 @@ var available_knowledge: Dictionary = {
 		"name": "Solução",
 		"description": "Mistura homogênea formada por um soluto dissolvido em um solvente.",
 		"category": "quimica"
+	},
+	# --- Tipos de reação (desbloqueados na mesa de alquimia) ---
+	"sintese": {
+		"name": "Reação de Síntese",
+		"description": "Reação em que duas ou mais substâncias se combinam para formar uma única substância mais complexa. Ex.: 2 H₂ + O₂ → 2 H₂O.",
+		"category": "quimica"
+	},
+	"decomposicao": {
+		"name": "Reação de Decomposição",
+		"description": "Reação em que uma única substância se divide em duas ou mais substâncias mais simples, geralmente com aquecimento ou eletricidade.",
+		"category": "quimica"
+	},
+	"combustao": {
+		"name": "Combustão",
+		"description": "Reação de uma substância (combustível) com o oxigênio (comburente), liberando energia na forma de calor e luz.",
+		"category": "quimica"
+	},
+	"oxidacao": {
+		"name": "Oxidação",
+		"description": "Reação em que uma substância perde elétrons. A ferrugem é um exemplo: o ferro é oxidado pelo oxigênio.",
+		"category": "quimica"
+	},
+	"neutralizacao": {
+		"name": "Neutralização",
+		"description": "Reação entre um ácido e uma base que produz sal e água, aproximando o pH de 7.",
+		"category": "quimica"
+	},
+	"dupla_troca": {
+		"name": "Reação de Dupla Troca",
+		"description": "Reação em que duas substâncias compostas trocam entre si parte de seus componentes, formando duas novas substâncias.",
+		"category": "quimica"
 	}
 }
 
